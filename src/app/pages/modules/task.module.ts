@@ -7,15 +7,15 @@ import { TaskViewComponent } from '../task-view/task-view.component';
 
 @NgModule({
   declarations: [
-    TaskViewComponent
+//    TaskViewComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    HttpClient
+//    HttpClient
   ],
   exports: [
-    TaskViewComponent
+//    TaskViewComponent
   ]
 })
 export class TaskModule { }

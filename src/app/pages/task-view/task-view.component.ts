@@ -30,7 +30,14 @@ export class TaskViewComponent implements OnInit {
 
   adicionarTarefa() {
     if (this.newTask.titulo.trim() && this.newTask.descricao.trim() && this.newTask.data_vencimento.trim()) {
-      this.taskService.createTask(this.newTask)
+      const taskToAdd = {
+        title: this.newTask.titulo,
+        description: this.newTask.descricao,
+        status: this.newTask.status,
+        due_date: this.newTask.data_vencimento
+      };
+      
+      this.taskService.createTask(taskToAdd)
         .subscribe(task => {
           this.tasks.push(task);
           this.clearForm();

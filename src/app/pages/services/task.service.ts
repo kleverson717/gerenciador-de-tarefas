@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import axios from 'axios';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/api/tasks';
+  private apiUrl = 'http://localhost:5000';
 
-  constructor(private http: HttpClient) {}
-
-  getTasks(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getTasks(): Observable<any> {
+    return from(axios.get(`${this.apiUrl}/get_tasks`).then(response => response.data));
   }
 
   createTask(task: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, task);
+    return from(axios.post(`${this.apiUrl}/add_task`, task).then(response => response.data));
   }
 
   updateTask(id: number, task: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, task);
+    return from(axios.put(`${this.apiUrl}/update_task/${id}`, task).then(response => response.data));
   }
 
   deleteTask(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return from(axios.delete(`${this.apiUrl}/delete_task/${id}`).then(response => response.data));
   }
 }

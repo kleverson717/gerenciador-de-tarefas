@@ -88,3 +88,8 @@ $light: #f0f0f0;  // Definindo a variável $light, ajuste conforme necessário.
         text-decoration: line-through;
     }
 }
+
+.has-text-primary {
+    color: #0077ae !important;
+    font-weight: 900 !important;
+}
